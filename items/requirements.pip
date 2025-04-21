@@ -1,2 +1,4 @@
-Faker==0.8.3
-Flask==0.12.2
+Flask==2.1.0  
+Jinja2==3.0.3 
+requests==2.26.0
+Faker==12.0.1
