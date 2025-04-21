@@ -4,6 +4,9 @@ FROM python:3.9-alpine
 # Copiar el archivo de requerimientos
 ADD requirements.pip /requirements.pip
 
+RUN python3 -m pip --version
+
+
 # Instalar las dependencias desde requirements.pip
 RUN pip3 install --no-cache-dir -r /requirements.pip
 
