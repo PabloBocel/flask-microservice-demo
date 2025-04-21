@@ -1,10 +1,12 @@
-FROM alpine
+FROM python:3.9-alpine
 
-RUN apk add --no-cache python3
-
+# Copiar el archivo requirements.pip
 ADD requirements.pip requirements.pip
-RUN pip3 install -r requirements.pip
 
+# Instalar dependencias
+RUN pip3 install --no-cache-dir -r requirements.pip
+
+# Copiar el código fuente
 ADD src src
 
 EXPOSE 5000
