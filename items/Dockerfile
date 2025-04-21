@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk add --no-cache python3
+RUN apk add --no-cache python3 py3-pip
 
 ADD requirements.pip requirements.pip
 RUN pip3 install -r requirements.pip
