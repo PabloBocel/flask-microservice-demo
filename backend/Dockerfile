@@ -3,7 +3,7 @@ FROM alpine
 RUN apk add --no-cache python3 py3-pip
 
 ADD requirements.pip requirements.pip
-RUN pip3 install --no-cache-dir -r requirements.pip
+RUN pip3 install -r requirements.pip
 
 ADD src src
 
