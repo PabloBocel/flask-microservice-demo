@@ -1,20 +1,20 @@
 FROM python:3.9-slim
 
-# Instalar python3 y pip
-RUN apk update && apk add --no-cache python3 py3-pip
+# Instalar dependencias (usando apt-get en lugar de apk)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    python3-pip && \
+    rm -rf /var/lib/apt/lists/*
 
-# Verificar que pip3 esté disponible
+# Verificar pip
 RUN python3 -m pip --version
 
-# Copiar el archivo de requerimientos
-ADD requirements.pip /requirements.pip
-
-# Instalar dependencias desde requirements.pip
+# Copiar e instalar requirements
+COPY requirements.pip /requirements.pip
 RUN pip3 install --no-cache-dir -r /requirements.pip
 
-# Copiar el código fuente
-ADD src /src
+# Copiar código
+COPY src /src
 
 EXPOSE 5000
-
 CMD ["python3", "/src/run.py"]
