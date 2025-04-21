@@ -1,14 +1,13 @@
-FROM alpine
+FROM python:3.9-slim
 
-RUN apk add --no-cache python3 py3-pip && \
-    ln -sf python3 /usr/bin/python && \
-    ln -sf pip3 /usr/bin/pip
+WORKDIR /app
 
-ADD requirements.pip requirements.pip
-RUN pip3 install -r requirements.pip
+COPY requirements.pip requirements.pip
 
-ADD src src
+RUN pip install --no-cache-dir -r requirements.pip
+
+COPY src/ src/
 
 EXPOSE 5000
 
-CMD ["python3", "/src/run.py"]
+CMD ["python", "src/run.py"]
