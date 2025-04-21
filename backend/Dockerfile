@@ -1,12 +1,15 @@
-# Usar una imagen de Python basada en Alpine
 FROM python:3.9-alpine
+
+# Instalar python3 y pip
+RUN apk update && apk add --no-cache python3 py3-pip
+
+# Verificar que pip3 esté disponible
+RUN python3 -m pip --version
 
 # Copiar el archivo de requerimientos
 ADD requirements.pip /requirements.pip
 
-RUN python3 -m pip --version
-
-# Instalar las dependencias desde requirements.pip
+# Instalar dependencias desde requirements.pip
 RUN pip3 install --no-cache-dir -r /requirements.pip
 
 # Copiar el código fuente
