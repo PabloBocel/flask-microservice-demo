@@ -1,13 +1,14 @@
 FROM python:3.9-alpine
 
-# Copiar el archivo requirements.pip
-ADD requirements.pip requirements.pip
+# Instalar dependencias y asegurarnos de que pip3 esté disponible
+RUN apk update && apk add --no-cache python3 py3-pip
 
-# Instalar dependencias
-RUN pip3 install --no-cache-dir -r requirements.pip
+# Añadir el archivo de requerimientos y ejecutar pip
+ADD requirements.pip /requirements.pip
+RUN pip3 install --no-cache-dir -r /requirements.pip
 
 # Copiar el código fuente
-ADD src src
+ADD src /src
 
 EXPOSE 5000
 
