@@ -1,33 +1,38 @@
-version: "2.1"
+# Puedes eliminar la línea version si quieres quitar la advertencia
+# version: "2.1"
+
 services:
-  backend:
-    container_name: demo_backend
+  api-gateway:
+    container_name: demo_api_gateway
     build:
-      context: ./backend
+      context: ./servicios/api-gateway
     ports:
       - "5000:5000"
     environment:
       - DEBUG=True
-  orders:
+
+  pedidos:
     container_name: demo_orders
     build:
-      context: ./orders
+      context: ./servicios/pedidos
     ports:
       - "5001:5000"
     environment:
       - DEBUG=True
-  items:
+
+  articulos:
     container_name: demo_items
     build:
-      context: ./items
+      context: ./servicios/articulos
     ports:
       - "5002:5000"
     environment:
       - DEBUG=True
-  aggregate:
+
+  agregador:
     container_name: demo_aggregate
     build:
-      context: ./aggregate
+      context: ./servicios/agregador
     ports:
       - "5003:5000"
     environment:
